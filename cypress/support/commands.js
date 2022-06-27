@@ -35,3 +35,11 @@
 //     }
 //   }
 // }
+
+Cypress.Commands.add('loginToApp', () => {
+  cy.visit('/login')
+  cy.get('[placeholder="Email"]').type('aleksey.zolochevski@gmail.com')
+  cy.get('[placeholder="Password"]').type('qwerty1!')
+  cy.get('form').submit()
+
+})

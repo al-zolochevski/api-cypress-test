@@ -1,0 +1,39 @@
+{
+  "articles": [
+    {
+      "slug": "Article-Title-59861",
+      "title": "LOL KEK",
+      "description": "Article description text",
+      "body": "Article body text",
+      "tagList": [],
+      "createdAt": "2022-06-27T12:22:02.291Z",
+      "updatedAt": "2022-06-27T12:22:02.291Z",
+      "favorited": false,
+      "favoritesCount": 0,
+      "author": {
+        "username": "Al-z",
+        "bio": null,
+        "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
+        "following": false
+      }
+    },
+    {
+      "slug": "test0-59861",
+      "title": "DATA FROM FIXTURES",
+      "description": "test1",
+      "body": "test2",
+      "tagList": [],
+      "createdAt": "2022-06-27T10:22:17.478Z",
+      "updatedAt": "2022-06-27T10:22:17.478Z",
+      "favorited": false,
+      "favoritesCount": 100,
+      "author": {
+        "username": "Al-z",
+        "bio": null,
+        "image": "https://api.realworld.io/images/smiley-cyrus.jpeg",
+        "following": false
+      }
+    }
+  ],
+  "articlesCount": 2
+}
