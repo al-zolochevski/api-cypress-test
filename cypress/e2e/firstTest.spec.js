@@ -3,6 +3,7 @@
 describe('Test with backend', () => {
 
   beforeEach('login to the app', () => {
+    //Intercept the server tags to fixture tags
     cy.intercept({method: 'GET', path: 'tags'}, {fixture: 'tags.json'})
     cy.loginToApp()
   })
@@ -84,7 +85,8 @@ describe('Test with backend', () => {
       cy.intercept('POST', '**/articles/' + articleLink + '/favorite', file);
     })
 
-    // cy.get('app-article-list button').eq(1).click().should('contain','101')
+    //TODO: I do not why, but the test works properly with .then not with should()
+    // cy.get('app-article-list button').eq(1).click().should('contain','10111')
     cy.get('app-article-list button').eq(1).click().then(button => {
       const text = button.text().trim()
       expect(text).to.equal('101')
@@ -92,12 +94,6 @@ describe('Test with backend', () => {
   });
 
   it.only('delete a new article in a global feed', () => {
-    const bodyLogin = {
-      "user": {
-        "email": "aleksey.zolochevski@gmail.com",
-        "password": "qwerty1!"
-      }
-    }
 
     const bodyArticle = {
       "article": {
@@ -107,9 +103,8 @@ describe('Test with backend', () => {
         "body": "New article's text 1"
       }
     }
-    cy.request('POST', 'https://api.realworld.io/api/users/login', bodyLogin)
-      .its('body').then(body => {
-      const token = body.user.token
+
+    cy.get('@token').then(token => {
 
       cy.request({
         method: 'POST',
