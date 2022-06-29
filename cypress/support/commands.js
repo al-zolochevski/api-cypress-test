@@ -50,7 +50,7 @@ Cypress.Commands.add('loginToApp', () => {
     cy.wrap(token).as('token')
     cy.visit('/', {
       onBeforeLoad: (contentWindow) => {
-        contentWindow.localStorage.setItem("jwtToken", token);
+        contentWindow.localStorage.setItem("jwtToken", token)
       },
     })
   })
