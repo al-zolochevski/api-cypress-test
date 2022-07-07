@@ -8,12 +8,21 @@ module.exports = defineConfig({
   },
   watchForFileChanges: false,
   video: false,
-  "retries": {
+  retries: {
     // Configure retry attempts for `cypress run`
     // Default is 0
-    "runMode": 2,
+    runMode: 0,
     // Configure retry attempts for `cypress open`
     // Default is 0
-    "openMode": 1
+    openMode: 0
+  },
+  env: {
+    usernane: "aleksey.zolochevski@gmail.com",
+    password: "qwerty1!",
+    apiUrl: "https://api.realworld.io/api"
+  },
+  reporter: 'cypress-multi-reporters',
+  reporterOptions: {
+    configFile: 'reporter-config.json'
   }
 });

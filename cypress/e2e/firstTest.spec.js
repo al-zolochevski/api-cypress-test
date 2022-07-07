@@ -10,10 +10,10 @@ describe('Test with backend', () => {
 
   it('verify correct request and responce', () => {
 
-    cy.intercept('POST', 'https://api.realworld.io/api/articles/').as('postArticles')
+    cy.intercept('POST', `${Cypress.env('apiUrl')}/articles`).as('postArticles')
 
     cy.contains('New Article').click()
-    cy.get('[formcontrolname="title"]').type('Article Title')
+    cy.get('[formcontrolname="title"]').type('Article Title 01')
     cy.get('[formcontrolname="description"]').type('Article description text')
     cy.get('[formcontrolname="body"]').type('Article body text')
     cy.contains('Publish Article').click()
@@ -29,7 +29,7 @@ describe('Test with backend', () => {
 
     cy.contains('Delete Article').click()
   });
-  
+
 //TODO: finished the test with reply
   it('intercepting and modifying the request and responce', () => {
 
@@ -48,7 +48,7 @@ describe('Test with backend', () => {
     }).as('postArticles')
 
     cy.contains('New Article').click()
-    cy.get('[formcontrolname="title"]').type('Article Title')
+    cy.get('[formcontrolname="title"]').type('Article Title 02')
     cy.get('[formcontrolname="description"]').type('Article description text')
     cy.get('[formcontrolname="body"]').type('Article body text')
     cy.contains('Publish Article').click()
@@ -61,7 +61,7 @@ describe('Test with backend', () => {
       expect(xhr.request.body.article.description).to.equal('Text from REPLY method')
     })
 
-    // cy.contains('Delete Article').click()
+    cy.contains('Delete Article').click()
   });
 
   it('should gave text with routing object', () => {
@@ -94,7 +94,7 @@ describe('Test with backend', () => {
     })
   });
 
-  it.only('delete a new article in a global feed', () => {
+  it('delete a new article in a global feed', () => {
 
     const bodyArticle = {
       "article": {
@@ -109,7 +109,7 @@ describe('Test with backend', () => {
 
       cy.request({
         method: 'POST',
-        url: 'https://api.realworld.io/api/articles',
+        url: `${Cypress.env('apiUrl')}/articles`,
         headers: {"Content-type": "application/json", "Authorization": "Token " + token},
         body: bodyArticle
       }).then(responce => {
@@ -123,7 +123,7 @@ describe('Test with backend', () => {
 
       cy.request({
         method: 'GET',
-        url: 'https://api.realworld.io/api/articles?limit=10&offset=0',
+        url: `${Cypress.env('apiUrl')}/articles?limit=10&offset=0`,
         headers: {"Content-type": "application/json", "Authorization": "Token " + token}
       }).its('body').then(body => {
         console.log(body.articles[0].title)
