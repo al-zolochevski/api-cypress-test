@@ -113,6 +113,7 @@ describe('Test with backend', () => {
         headers: {"Content-type": "application/json", "Authorization": "Token " + token},
         body: bodyArticle
       }).then(responce => {
+        //больше проверок (текст боди и проч)
         expect(responce.status).to.equal(200)
       })
 
